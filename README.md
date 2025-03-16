@@ -41,9 +41,6 @@ To configure error use:
 
 This application incorporates several design patterns to improve code structure and scalability:
 
-# Facade Pattern: 
-Provides a simplified interface to complex Pandas operations for history management.
-# Command Pattern: 
-Structures commands in the REPL interface for clean and maintainable code.
-# Factory Method, Singleton, and Strategy Patterns: 
-Used to further enhance flexibility and scalability in the code.
+- Facade Pattern:Provides a simplified interface to complex Pandas operations for history management.
+- Command Pattern:Structures commands in the REPL interface for clean and maintainable code.
+- Factory Method, Singleton, and Strategy Patterns:Used to further enhance flexibility and scalability in the code.
