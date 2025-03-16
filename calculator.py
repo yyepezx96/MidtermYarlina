@@ -1,8 +1,20 @@
 import logging
 
+# Create a logger for the module
 logger = logging.getLogger(__name__)
 
+def check_valid_input(a, b):
+    """
+    Check if both arguments are numbers (int or float).
+    """
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        raise TypeError("Both arguments must be numbers.")
+
 def add(a, b):
+    """
+    Adds two numbers together and logs the result.
+    """
+    check_valid_input(a, b)  # Ensure inputs are valid
     logger.info(f"Adding {a} and {b}")
     try:
         result = a + b
@@ -13,6 +25,10 @@ def add(a, b):
         raise
 
 def subtract(a, b):
+    """
+    Subtracts the second number from the first and logs the result.
+    """
+    check_valid_input(a, b)  # Ensure inputs are valid
     logger.info(f"Subtracting {b} from {a}")
     try:
         result = a - b
@@ -23,6 +39,10 @@ def subtract(a, b):
         raise
 
 def multiply(a, b):
+    """
+    Multiplies two numbers together and logs the result.
+    """
+    check_valid_input(a, b)  # Ensure inputs are valid
     logger.info(f"Multiplying {a} and {b}")
     try:
         result = a * b
@@ -33,6 +53,11 @@ def multiply(a, b):
         raise
 
 def divide(a, b):
+    """
+    Divides the first number by the second and logs the result.
+    Handles division by zero.
+    """
+    check_valid_input(a, b)  # Ensure inputs are valid
     logger.info(f"Dividing {a} by {b}")
     try:
         if b == 0:
