@@ -24,10 +24,14 @@ A Python-based calculator application with a REPL interface, history management,
    ```
 Once the application is running, you can interact with it via the command-line interface (REPL). Use the following commands to perform calculations:
 
-add 3 2 to add numbers
-subtract 5 3 to subtract numbers
-multiply 6 7 to multiply numbers
-divide 10 2 to divide numbers
+- `add 3 2` to add numbers
+- `subtract 5 3` to subtract numbers
+- `multiply 6 7` to multiply numbers
+- `divide 10 2` to divide numbers
+
+Additionally, you can test error handling with cases like:
+- `divide 5 0` for division by zero (will show an error message)add 3 2 to add numbers
+
 
 To configure error use:             
    ```bash
