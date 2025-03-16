@@ -37,3 +37,13 @@ To configure error use:
    ```bash
    LOG_LEVEL=DEBUG python3 repl.py                                                          
    ``` 
+##Design Patterns
+
+This application incorporates several design patterns to improve code structure and scalability:
+
+#Facade Pattern: 
+Provides a simplified interface to complex Pandas operations for history management.
+#Command Pattern: 
+Structures commands in the REPL interface for clean and maintainable code.
+#Factory Method, Singleton, and Strategy Patterns: 
+Used to further enhance flexibility and scalability in the code.
