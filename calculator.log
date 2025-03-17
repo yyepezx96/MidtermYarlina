@@ -46,3 +46,39 @@ WARNING repl:repl.py:85 Attempted division by zero!
 INFO repl:repl.py:97 history command executed.
 INFO repl:repl.py:118 Exiting the REPL.
 INFO repl:repl.py:111 History saved to history.csv
+INFO __main__:repl.py:34 add command executed with result: 4.0
+INFO __main__:repl.py:68 multiply command executed with result: 30.0
+WARNING __main__:repl.py:91 Attempted division by zero!
+INFO repl:repl.py:34 add command executed with result: 5
+ERROR repl:repl.py:37 Invalid input for add command: two three
+WARNING repl:repl.py:91 Attempted division by zero!
+INFO repl:repl.py:102 history command executed.
+INFO repl:repl.py:123 Exiting the REPL.
+INFO repl:repl.py:116 History saved to history.csv
+INFO __main__:repl.py:34 add command executed with result: 8.0
+INFO __main__:repl.py:102 history command executed.
+INFO __main__:repl.py:123 Displayed available plugins.
+INFO __main__:repl.py:116 History saved to history.csv
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:34 add command executed with result: 4.0
+INFO __main__:repl.py:107 History cleared.
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:34 add command executed with result: 7.0
+INFO __main__:repl.py:68 multiply command executed with result: 20.0
+INFO __main__:repl.py:85 divide command executed with result: 1.0
+INFO __main__:repl.py:130 Exiting the REPL.
+INFO __main__:repl.py:34 add command executed with result: 8.0
+INFO __main__:repl.py:68 multiply command executed with result: 20.0
+INFO __main__:repl.py:85 divide command executed with result: 1.0
+INFO __main__:repl.py:51 subtract command executed with result: 1.0
+INFO __main__:repl.py:51 subtract command executed with result: -1.0
+WARNING __main__:repl.py:91 Attempted division by zero!
+INFO __main__:repl.py:102 history command executed.
+INFO __main__:repl.py:116 History saved to history1.csv
+INFO __main__:repl.py:107 History cleared.
+INFO __main__:repl.py:123 Displayed available plugins.
+INFO __main__:repl.py:130 Exiting the REPL.

@@ -32,6 +32,9 @@ Once the application is running, you can interact with it via the command-line i
 Additionally, you can test error handling with cases like:
 - `divide 5 0` for division by zero (will show an error message)add 3 2 to add numbers
 
+- Type in Menu to see the `Plugins`
+
+-Use features like `History` to view past equations 
 
 To configure error use:             
    ```bash
@@ -44,3 +47,6 @@ This application incorporates several design patterns to improve code structure 
 - Facade Pattern:Provides a simplified interface to complex Pandas operations for history management.
 - Command Pattern:Structures commands in the REPL interface for clean and maintainable code.
 - Factory Method, Singleton, and Strategy Patterns:Used to further enhance flexibility and scalability in the code.
+
+## Demo video
+Watch Yarlina's Calculator in action: https://drive.google.com/file/d/1OiINEuCS1kWnxNxp87gGiNEKv0ggoKgA/view?usp=share_link
