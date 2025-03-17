@@ -1,0 +1,48 @@
+INFO repl:repl.py:28 add command executed with result: 5
+WARNING repl:repl.py:85 Attempted division by zero!
+ERROR repl:repl.py:31 Invalid input for add command: two three
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+WARNING repl:repl.py:85 Attempted division by zero!
+ERROR repl:repl.py:31 Invalid input for add command: two three
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+WARNING repl:repl.py:85 Attempted division by zero!
+ERROR repl:repl.py:31 Invalid input for add command: two three
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+ERROR repl:repl.py:31 Invalid input for add command: two three
+WARNING repl:repl.py:85 Attempted division by zero!
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+ERROR repl:repl.py:31 Invalid input for add command: two three
+WARNING repl:repl.py:85 Attempted division by zero!
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+ERROR repl:repl.py:31 Invalid input for add command: two three
+WARNING repl:repl.py:85 Attempted division by zero!
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+ERROR repl:repl.py:31 Invalid input for add command: two three
+WARNING repl:repl.py:85 Attempted division by zero!
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
+INFO repl:repl.py:28 add command executed with result: 5
+ERROR repl:repl.py:31 Invalid input for add command: two three
+WARNING repl:repl.py:85 Attempted division by zero!
+INFO repl:repl.py:97 history command executed.
+INFO repl:repl.py:118 Exiting the REPL.
+INFO repl:repl.py:111 History saved to history.csv
