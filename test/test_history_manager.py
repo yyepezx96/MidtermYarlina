@@ -1,4 +1,7 @@
+import sys
+import os
 import pytest
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pandas as pd
 from history_manager import add_to_history, show_history, clear_history, save_history  # Don't forget to import save_history
 

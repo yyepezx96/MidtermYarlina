@@ -1,4 +1,7 @@
+import sys
 import pytest
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from calculator import add, subtract, multiply, divide
 from unittest.mock import patch  # Import patch here
 

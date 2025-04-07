@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip  # Updates pip to the latest version
           pip install -r requirements.txt  # Installs dependencies from  requirements.txt
 
+      - name: Set PYTHONPATH to include current directory
+        run: |
+          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
+
       - name: Run tests
         run: |
           pytest --maxfail=1 --disable-warnings -q  # to run test using pytest (adjust as needed)

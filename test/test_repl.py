@@ -1,4 +1,7 @@
 import pytest
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from unittest import mock
 from io import StringIO
 from repl import CalculatorREPL  # Import the REPL class from your repl.py file
@@ -17,10 +20,46 @@ def mock_calculator():
         yield mock_add_to_history
 
 # Test the add command
-def test_do_add(mock_calculator):
-    # Capture both stdout and stderr
-    captured_output = StringIO()
-    captured_error = StringIO()
+@mock.patch('sys.stdout', new_callable=StringIO)  # Capturing printed output
+@mock.patch('sys.stderr', new_callable=StringIO)
+def test_do_add(mock_stdout, mock_stderr, mock_calculator):
+    # Create an instance of the REPL class
+    calculator_repl = CalculatorREPL()
+   
+    # Run the command (simulate user input for adding)
+    calculator_repl.do_add("2 3")
+
+    # Check if the output contains the correct result (stdout)
+    print("Captured output:", mock_stdout.getvalue())  # For debugging purposes
+    assert "5" in mock_stdout.getvalue()  # Ensure 5 is printed as the result
+
+    # Check if the logger has logged the correct info (stderr)
+    print("Captured error:", mock_stderr.getvalue())  # For debugging purposes
+    assert "add command executed with result: 5" in mock_stderr.getvalue()
+
+    # Check if add_to_history was called with the correct arguments
+    mock_calculator.assert_called_with("add 2 3", 5)
+
+# Test invalid input for add command
+@mock.patch('sys.stdout', new_callable=StringIO)  # Capturing printed output
+@mock.patch('sys.stderr', new_callable=StringIO)  # Capturing logs
+def test_do_add_invalid_input(mock_stdout, mock_stderr, mock_calculator):
+    # Create an instance of the REPL class
+    calculator_repl = CalculatorREPL()
+
+    # Run the command with invalid input (simulate user input)
+    calculator_repl.do_add("two three")
+
+    # Check if the output contains the invalid input message (stdout)
+    print("Captured output:", mock_stdout.getvalue())  # For debugging purposes
+    assert "Invalid input. Please enter numbers only." in mock_stdout.getvalue()
+
+    # Check if the logger has logged the correct error (stderr)
+    print("Captured error:", mock_stderr.getvalue())  # For debugging purposes
+    assert "Invalid input for add command: two three" in mock_stderr.getvalue()
+
+    # Check that add_to_history was not called with invalid input
+    mock_calculator.assert_not_called()
 
     # Redirect stdout and stderr to the StringIO objects
     calculator_repl = CalculatorREPL()
@@ -31,9 +70,11 @@ def test_do_add(mock_calculator):
     calculator_repl.do_add("2 3")
 
     # Check if the output contains the correct result (stdout)
+    print("Captured output:", captured_output.getvalue())
     assert "5" in captured_output.getvalue()
 
     # Check if the logger has logged the correct info (stderr)
+    print("Captured error:", captured_error.getvalue())
     assert "add command executed with result: 5" in captured_error.getvalue()
 
     # Check if add_to_history was called with the correct arguments
