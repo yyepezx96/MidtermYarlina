@@ -1,0 +1,37 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - master  # Runs on push 
+  pull_request:
+    branches:
+      - master  # Runs on pull requests targeting the master branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Runs on Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checks out code
+
+      - name: Set up Python
+        uses: actions/setup-python@v2  # Sets up Python on the runner
+        with:
+          python-version: '3.9.6'  
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Updates pip to the latest version
+          pip install -r requirements.txt  # Installs dependencies from  requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest --maxfail=1 --disable-warnings -q  # to run test using pytest (adjust as needed)
+
+      - name: Upload test coverage results (optional)
+        if: success()  # Uploads coverage results to Codecov if tests pass
+        uses: codecov/codecov-action@v2
+        with:
+          file: ./coverage.xml  # to use for coverage tracking
