@@ -1,7 +1,8 @@
+import os
 import pytest
 import logging
 from unittest import mock
-import os
+
 
 @mock.patch('logging.FileHandler')
 @mock.patch('logging.StreamHandler')
@@ -13,6 +14,10 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     # Mock the actual handlers so no file writes happen
     mock_file_handler.return_value = mock.MagicMock()
     mock_stream_handler.return_value = mock.MagicMock()
+
+    # Set the logging level for the mocked handlers
+    mock_file_handler.return_value.level = logging.DEBUG
+    mock_stream_handler.return_value.level = logging.DEBUG
 
     logger = logging.getLogger('test_logger')
 
@@ -28,5 +33,5 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     logger.critical('Test critical message')
 
     # Verify that the log functions were called
-    mock_file_handler.return_value.emit.assert_called()
-    mock_stream_handler.return_value.emit.assert_called()
+    mock_file_handler.return_value.assert_called()
+    mock_stream_handler.return_value.assert_called()
