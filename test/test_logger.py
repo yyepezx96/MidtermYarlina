@@ -15,13 +15,13 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     mock_file_handler.return_value = mock.MagicMock()
     mock_stream_handler.return_value = mock.MagicMock()
 
-    # Set the logging level for the mocked handlers
-    mock_file_handler.return_value.level = logging.DEBUG
-    mock_stream_handler.return_value.level = logging.DEBUG
+# Set the logging level for the mocked handlers to be an integer (like logging.DEBUG)
+    mock_file_handler.return_value.setLevel(logging.DEBUG)
+    mock_stream_handler.return_value.setLevel(logging.DEBUG)
 
     logger = logging.getLogger('test_logger')
 
-    # Add the mocked handlers to the logger
+# Add the mocked handlers to the logger
     logger.addHandler(mock_file_handler.return_value)
     logger.addHandler(mock_stream_handler.return_value)
 
