@@ -34,3 +34,7 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     # Verify that the log functions were called
     mock_file_handler.return_value.assert_called()
     mock_stream_handler.return_value.assert_called()
+
+# Check if the correct log levels were called (optional)
+    assert mock_file_handler.return_value.handle.call_count == 5  # One for each log level
+    assert mock_stream_handler.return_value.handle.call_count == 5
