@@ -11,16 +11,15 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     os.environ['LOG_FILE'] = 'test.log'
 
     # Mock the actual handlers so no file writes happen
-    mock_file_handler.return_value = mock.MagicMock()
-    mock_stream_handler.return_value = mock.MagicMock()
+    mock_file_handler.return_value = mock.MagicMock(spec=logging.FileHandler)
+    mock_stream_handler.return_value = mock.MagicMock(spec=logging.StreamHandler)
 
-# Set the logging level for the mocked handlers to be an integer (like logging.DEBUG)
-    mock_file_handler.return_value.level = logging.DEBUG
-    mock_stream_handler.return_value.level = logging.DEBUG
+    # Set the logging level for the mocked handlers to be an integer (like logging.DEBUG)
+    mock_file_handler.return_value.setLevel(logging.DEBUG)
+    mock_stream_handler.return_value.setLevel(logging.DEBUG)
 
+    # Create a logger and add mocked handlers
     logger = logging.getLogger('test_logger')
-
-# Add the mocked handlers to the logger
     logger.addHandler(mock_file_handler.return_value)
     logger.addHandler(mock_stream_handler.return_value)
 
@@ -31,10 +30,10 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     logger.error('Test error message')
     logger.critical('Test critical message')
 
-    # Verify that the log functions were called
-    mock_file_handler.return_value.assert_called()
-    mock_stream_handler.return_value.assert_called()
+    # Verify that the handle() method was called on the mock handlers
+    mock_file_handler.return_value.handle.assert_called()
+    mock_stream_handler.return_value.handle.assert_called()
 
-# Check if the correct log levels were called (optional)
-    assert mock_file_handler.return_value.handle.call_count == 5  # One for each log level
-    assert mock_stream_handler.return_value.handle.call_count == 5
+    # You can also check how many times the handlers were called
+    assert mock_file_handler.return_value.handle.call_count == 5  # For each log level
+    assert mock_stream_handler.return_value.handle.call_count == 5  # For each log level
