@@ -4,20 +4,28 @@ import logging
 from calculator import add, subtract, multiply, divide
 from history_manager import add_to_history, show_history, clear_history, save_history
 
-# Set up logging
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)  # Ensure the logger is set to debug mode
-stream_handler = logging.StreamHandler()  # Set up a stream handler
-file_handler = logging.FileHandler("calculator.log")  # Set up a file handler
-formatter = logging.Formatter('%(levelname)s %(name)s:%(filename)s:%(lineno)d %(message)s')
-stream_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
-logger.addHandler(stream_handler)
-logger.addHandler(file_handler)
+# Refactor logging setup into a function
+def setup_logger():
+    """
+    Sets up the logger for the REPL.
+    """
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)  # Ensure the logger is set to debug mode
+    stream_handler = logging.StreamHandler()  # Set up a stream handler
+    file_handler = logging.FileHandler("calculator.log")  # Set up a file handler
+    formatter = logging.Formatter('%(levelname)s %(name)s:%(filename)s:%(lineno)d %(message)s')
+    stream_handler.setFormatter(formatter)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+    logger.addHandler(file_handler)
+    return logger
+
+# Call setup_logger to get the logger
+logger = setup_logger()
 
 class CalculatorREPL(cmd.Cmd):
     prompt = '> '  # The prompt for the user
-    
+
     def __init__(self):
         super().__init__()
         self.plugin_manager = PluginManager()  # Initialize PluginManager
@@ -26,12 +34,12 @@ class CalculatorREPL(cmd.Cmd):
     def do_add(self, arg):
         """
         Add two numbers: add 2 3
-        """ 
+        """
         try:
             nums = list(map(float, arg.split()))
             result = add(nums[0], nums[1])
             add_to_history(f"add {nums[0]} {nums[1]}", result)  # Add to history
-            logger.info(f"add command executed with result: {result}")  # Log command
+            logger.info(f"add command executed with result: {result}")  # Log command execution
             print(result)  # Print result for testing purposes
         except ValueError:
             logger.error(f"Invalid input for add command: {arg}")  # Log error
@@ -39,13 +47,13 @@ class CalculatorREPL(cmd.Cmd):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")  # Log unexpected errors
             print(f"Unexpected error: {e}")
-    
+
     def do_subtract(self, arg):
         """
         Subtract two numbers: subtract 5 2
-        """ 
+        """
         try:
-            nums = list(map(float, arg.split()))
+            nums = list(map(float, arg.split())) 
             result = subtract(nums[0], nums[1])
             add_to_history(f"subtract {nums[0]} {nums[1]}", result)
             logger.info(f"subtract command executed with result: {result}")
@@ -56,7 +64,7 @@ class CalculatorREPL(cmd.Cmd):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             print(f"Unexpected error: {e}")
-        
+
     def do_multiply(self, arg):
         """
         Multiply two numbers: multiply 3 4
@@ -73,7 +81,7 @@ class CalculatorREPL(cmd.Cmd):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             print(f"Unexpected error: {e}")
-        
+
     def do_divide(self, arg):
         """
         Divide two numbers: divide 6 2
@@ -93,20 +101,20 @@ class CalculatorREPL(cmd.Cmd):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             print(f"Unexpected error: {e}")
-        
+
     def do_history(self, arg):
         """
         Show the calculation history.
-        """
+        """ 
         show_history()  # Shows all history operations
         logger.info("history command executed.")  # Log the history command
         
     def do_clear_history(self, arg):
         """ Clear the calculation history. """
-        clear_history()  # Clears the history
+        clear_history()  # Clears the history   
         logger.info("History cleared.")  # Log history clearance
         print("History cleared.")
-        
+            
     def do_save_history(self, arg):
         """
         Save the history to a file: save_history history.csv
@@ -114,21 +122,21 @@ class CalculatorREPL(cmd.Cmd):
         save_history(arg)  # Save the history to a CSV file
         print(f"History saved to {arg}")  # This line ensures the expected success message
         logger.info(f"History saved to {arg}")  # Log history saving
-            
+        
     def do_menu(self, arg):
         """Show available plugins"""
-        print("Available plugins:")
+        print("Available plugins:")         
         for plugin in self.plugin_manager.list_plugins():
             print(f"- {plugin}")
         logger.info("Displayed available plugins.")
-
+            
     def do_exit(self, arg):
         """
         Exit the REPL.
         """
         print("Goodbye!")  # This ensures the goodbye message is printed
         logger.info("Exiting the REPL.")  # Log exit command
-
+        
 if __name__ == '__main__':
     CalculatorREPL().cmdloop()  # Start the REPL loop
 

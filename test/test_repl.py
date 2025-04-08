@@ -94,6 +94,7 @@ def test_do_history(mock_stdout):
 
     # Check if the history command was logged
     captured_output = mock_stdout.getvalue().strip()
+    print("Captured output:", captured_output)
     assert "history command executed." in captured_output
 
 
@@ -108,6 +109,7 @@ def test_do_exit(mock_stdout):
 
     # Check if the correct log message appears
     captured_output = mock_stdout.getvalue().strip()
+    print("Captured output:", captured_output)
     assert "Goodbye!" in captured_output
     assert "Exiting the REPL." in captured_output  # Ensure the REPL exits gracefully
     assert result is True  # Test the save history command
