@@ -3,7 +3,6 @@ import pytest
 import logging
 from unittest import mock
 
-
 @mock.patch('logging.FileHandler')
 @mock.patch('logging.StreamHandler')
 def test_logging_output(mock_file_handler, mock_stream_handler):
@@ -16,8 +15,8 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     mock_stream_handler.return_value = mock.MagicMock()
 
 # Set the logging level for the mocked handlers to be an integer (like logging.DEBUG)
-    mock_file_handler.return_value.setLevel(logging.DEBUG)
-    mock_stream_handler.return_value.setLevel(logging.DEBUG)
+    mock_file_handler.return_value.level = logging.DEBUG
+    mock_stream_handler.return_value.level = logging.DEBUG
 
     logger = logging.getLogger('test_logger')
 
