@@ -14,9 +14,17 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     mock_file_handler.return_value = mock.MagicMock(spec=logging.FileHandler)
     mock_stream_handler.return_value = mock.MagicMock(spec=logging.StreamHandler)
 
+    # Explicitly mock the setLevel method for the mocked handlers
+    mock_file_handler.return_value.setLevel = mock.MagicMock()
+    mock_stream_handler.return_value.setLevel = mock.MagicMock()
+
     # Set the logging level for the mocked handlers to be an integer (like logging.DEBUG)
     mock_file_handler.return_value.setLevel(logging.DEBUG)
     mock_stream_handler.return_value.setLevel(logging.DEBUG)
+
+    # Mock the handle method so we can assert it gets called
+    mock_file_handler.return_value.handle = mock.MagicMock()
+    mock_stream_handler.return_value.handle = mock.MagicMock()
 
     # Create a logger and add mocked handlers
     logger = logging.getLogger('test_logger')
@@ -34,6 +42,7 @@ def test_logging_output(mock_file_handler, mock_stream_handler):
     mock_file_handler.return_value.handle.assert_called()
     mock_stream_handler.return_value.handle.assert_called()
 
-    # You can also check how many times the handlers were called
+    # Check the number of times the handle method was called for both handlers
     assert mock_file_handler.return_value.handle.call_count == 5  # For each log level
     assert mock_stream_handler.return_value.handle.call_count == 5  # For each log level
+
